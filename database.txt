@@ -1,0 +1,41 @@
+business
+	id - pk
+	phone
+	name
+	address
+	zip
+	city
+	state
+	
+submissionTypes
+	id - pk
+	typeDesc (1=Happy Hour, 2=Event, 3=amenities)
+	
+users
+	id
+	email - pk
+	password
+	
+happyhour
+	id - pk
+	dayOfTheWeek
+	description
+	
+event
+	id - pk
+	daysOcurringOn
+	description
+	
+amenities
+	id - pk
+	description
+	
+userSubmissions
+	id - pk
+	users.id - fk
+	submissionType - submissionTypes.id - fk
+	submissionID - table.id - fk
+	submittedOn
+	businessID - business.id - fk
+	
+
