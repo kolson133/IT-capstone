@@ -1,0 +1,67 @@
+@font-face {
+    font-family: KGBrokenVesselsSketch;
+    src: url(../fonts/KGBrokenVesselsSketch.ttf);
+}
+
+@font-face {
+    font-family: ChalkboardbyMartavanEck;
+    src: url(../fonts/ChalkboardbyMartavanEck.ttf);
+}
+
+body {
+    background-image: url(../images/IFoJQZ.jpg);
+    background-size: cover;
+}
+
+.logo {
+    position: relative;
+    text-align: center;
+    top: -50px;
+    font-family: ChalkboardbyMartavanEck;
+    color: floralwhite;
+    font-size: 120px;
+}
+
+.searchBox {
+    position: relative;
+    margin: -95px auto;
+    border: solid floralwhite 5px;
+    border-radius: 8px;
+    width: 600px;
+    height: 300px;
+}
+
+input[type=text] {
+    display: block;
+    margin: 20% auto;
+    width: 350px;
+    height: 35px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.nav, ul, li, a {
+    position: relative;
+    margin-top: 3px;
+    float: left;
+    text-decoration: none;
+    list-style-type: none;
+    font-family: KGBrokenVesselsSketch;
+    font-size: 150%;
+    color: floralwhite;
+    padding-left: 35px;
+    padding-right: 40px;
+}
+
+.nav, a:hover {
+    color: black;   
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    background-image: url(../images/4408530-old-brick-wall-background.jpg);
+    left: -10px;
+    width: 110%;
+    height: 13%;
+}

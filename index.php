@@ -1,37 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>Don't Worry, Bar Happy!</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dont' Worry, Bar Happy</title>
+        <meta name="BarHappy" content="Our Webpage">
         <link rel="stylesheet" href="css/styles.css">
     </head>
-    <body>
-        <div id="wrapper">
-            <header>
-                <h1>Don't Worry</h1>
-                <h1>Bar Happy!</h1>
-            </header>
-            <nav>
-                <ul>
-                    <li>Search</li>
-                    <li>Contact Us</li>
-                </ul>
-            </nav>
-            <main>
-                <div id="outerSearchBox">
-                    <ul id="searchTypes">
-                        <li>By Zip</li>
-                        <li>By City</li>
-                        <li>By Name</li>
-                    </ul>
-                    <div id="innerSearchBox">
-                        
-                    </div>
-                </div>
-            </main>
+    
+    <body>     
+        <h1 class="logo">Don't Worry, Bar Happy!</h1>
+        <div class="searchBox">
+             <input type="text" name="search" placeholder="Search..">
+        </div><br><br><br><br><br><br>
+        
         <?php
         
         ?>
-        </div>
+        
+        <footer>
+            <div class="nav"></div>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="#">Submit</a></li>
+                </ul>
+            </div>
+        </footer>
     </body>
 </html>
