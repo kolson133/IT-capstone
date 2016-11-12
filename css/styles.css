@@ -8,6 +8,11 @@
     src: url(../fonts/ChalkboardbyMartavanEck.ttf);
 }
 
+@font-face {
+    font-family: DKMidnightChalker;
+    src: url(../fonts/DKMidnightChalker.otf);
+}
+
 body {
     background-image: url(../images/IFoJQZ.jpg);
     background-size: cover;
@@ -29,6 +34,18 @@ body {
     border-radius: 8px;
     width: 600px;
     height: 300px;
+}
+
+.contactInfo {
+    font-family: DKMidnightChalker;
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 25px;
+    color: floralwhite;
+    position: relative;
+    margin: -95px auto;
+    width: 800px;
+    padding-bottom: 100px;
 }
 
 input[type=text] {
