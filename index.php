@@ -12,7 +12,7 @@
         <h1 class="logo">Don't Worry, Bar Happy!</h1>
         <div class="searchBox">
              <input type="text" name="search" placeholder="Search..">
-        </div><br><br><br><br><br><br>
+        </div>
         
         <?php
         
@@ -21,9 +21,9 @@
         <footer>
             <div class="nav"></div>
                 <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="#">Submit</a></li>
+                    <li><a class="links" href="contact.php">Contact Us</a></li>
+                    <li><a class="links" href="index.php">Home</a></li>
+                    <li><a class="links" href="#">Submit</a></li>
                 </ul>
             </div>
         </footer>
