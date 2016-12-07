@@ -37,6 +37,22 @@
                     <input type="barName" name="bar">
                 </label>
             </div>
+    
+            <div class="form-row">
+                <label>
+                    <span>Happy Hour Times</span>
+                    <input list="happyHour" name="happyHour">
+                      <datalist id="happyHour">
+                        <option value="Sunday">
+                        <option value="Monday">
+                        <option value="Tuesday">
+                        <option value="Wednesday">
+                        <option value="Thursday">
+                        <option value="Friday">
+                        <option value="Saturday">
+                      </datalist>
+                </label>
+            </div>
 
             <div class="form-row">
                 <label>
@@ -49,9 +65,9 @@
                 <button type="submit">Submit Bar</button>
             </div>
 
-</form><br><br><br><br><br><br>
+</form><br><br><br><br><br><br><br><br>
         <footer>
-            <div class="nav"></div>
+            <div class="nav">
                 <ul>
                     <li><a class="links" href="contact.php">Contact Us</a></li>
                     <li><a class="links" href="index.php">Home</a></li>
