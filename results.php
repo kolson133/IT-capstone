@@ -15,6 +15,26 @@
         </div>
 
         <?php
+        function dayName($dayId) {
+            switch ($dayId) {
+                case 0:
+                    return "Sunday";
+                case 1:
+                    return "Monday";
+                case 2:
+                    return "Tuesday";
+                case 3:
+                    return "Wednesday";
+                case 4:
+                    return "Thursday";
+                case 5:
+                    return "Friday";
+                case 6:
+                    return "Saturday";
+                default:
+                    return "Error";
+            }
+        }
         if (isset($_GET['zip'])) {
             include 'SQLQueries.php';
             // eventually get a list of all yelp results
@@ -32,6 +52,7 @@
                          echo "Time Start: $happyHourRow[timeStart]<br>";
                          echo "Time End: $happyHourRow[timeEnd]<br>";
                          echo "Happy Hour: $happyHourRow[description]<br>";
+                         echo "Day: " . dayName($happyHourRow['dayOfTheWeek']);
                      } //end happy hour row whle
                     ?>
                 </td>
