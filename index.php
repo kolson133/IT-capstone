@@ -10,18 +10,20 @@
     
     <body>     
         <h1 class="logo">Don't Worry, Bar Happy!</h1>
-        <div class="searchBox">
-             <input class="searchInput" type="text" name="search" placeholder="Search..">
+        <div class="searchBox"><br><br><br>
+            <center>
+                <p>Enter Zip Code</p>
+                <form  method="get" action="results.php"  id="searchform"> 
+                <input  id="zip" type="text" name="zip"><br><br>
+                <input  type="submit" name="submit" value="Search"> 
+                </form>
+            </center>   
         </div>
-        
-        <?php
-        
-        ?>
         
         <footer>
             <div class="nav">
                 <ul>
-                    <li><a class="links" href="contact.php">Contact Us</a></li>
+                    <li><a class="links" href="contact.php">Contact</a></li>
                     <li><a class="links" href="index.php">Home</a></li>
                     <li><a class="links" href="submit.php">Submit</a></li>
                 </ul>
@@ -29,3 +31,4 @@
         </footer>
     </body>
 </html>
+
