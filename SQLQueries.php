@@ -69,7 +69,10 @@ class SQLQueries {
         require 'connectToDb.php';
         $sql = "SELECT business.id, dayOfTheWeek, timeStart, timeEnd, happyhour.description "
                 . "FROM userSubmissions, happyhour, business "
-                . "WHERE userSubmissions.businessID = '$id'";
+                . "WHERE userSubmissions.businessID = '$id'"
+                . " AND userSubmissions.businessID = business.id"
+                . " AND happyhour.id = userSubmissions.submissionID"
+                . " AND userSubmissions.submissionType = '1'";
         try {
             return $pdo -> query($sql);    
         } catch (Exception $ex) {
