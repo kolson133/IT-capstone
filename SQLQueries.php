@@ -9,7 +9,7 @@
 class SQLQueries {
 
 
-    private function getBarFrom($field, $input) {
+    private static function getBarFrom($field, $input) {
         require 'connectToDb.php';
         $input = sanatizeInput($input);
         $sql = "SELECT * FROM business WHERE $field='$input'";
@@ -20,11 +20,21 @@ class SQLQueries {
         }
     }
 
-    public function getBarFromYelpID($yelpID) {
+    public static function getAllBars() {
+        require 'connectToDb.php';
+        $sql = "SELECT * FROM business";
+        try {
+            return $pdo -> query($sql);    
+        } catch (Exception $ex) {
+            print($ex->getMessage());
+        }
+        
+    }
+    public static function getBarFromYelpID($yelpID) {
        return getBarFrom("yelpID", $yelpID);
     }
 
-    public function getBarFromPhone($phone) {
+    public static function getBarFromPhone($phone) {
         //We need to make sure phone has no spaces, dashes, or paranthesis in it.
         $phone = str_replace(" ","",$phone);
         $phone = str_replace("-","",$phone);
@@ -35,16 +45,16 @@ class SQLQueries {
     
     // This function will return all bars that match $name
     // Caution, this function is likely to return more than 1 bar.
-    public function getBarFromName($name) {
+    public static function getBarFromName($name) {
         return getBarFrom("name", $name);
     }
     
-    public function sanatizeInput($input) {
+    public static function sanatizeInput($input) {
         $input = trim($input);
         return $input;
     }
     
-    public function getHappyHoursForHappyHourID($id) {
+    public static function getHappyHoursForHappyHourID($id) {
         require 'connectToDb.php';
         $id = sanatizeInput($id);
         $sql = "SELECT * FROM happyhour WHERE $id='$id'";
@@ -55,11 +65,11 @@ class SQLQueries {
         }
     }
     
-    public function getHappyHoursByBusinessID($id) {
+    public static function getHappyHoursByBusinessID($id) {
         require 'connectToDb.php';
         $sql = "SELECT business.id, dayOfTheWeek, timeStart, timeEnd, happyhour.description "
                 . "FROM userSubmissions, happyhour, business "
-                . "WHERE userSubmissions.businessID = business.id";
+                . "WHERE userSubmissions.businessID = '$id'";
         try {
             return $pdo -> query($sql);    
         } catch (Exception $ex) {
@@ -67,11 +77,11 @@ class SQLQueries {
         }
     }
     
-    public function passwordHash($password) {
+    public static function passwordHash($password) {
         return password_hash($password, PASSWORD_DEFAULT);
     }
     
-    public function addUser($email, $password) {
+    public static function addUser($email, $password) {
         require 'connectToDb.php';
         $stmt = $pdo->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
         $stmt->bindParam(':email', $email);
@@ -79,7 +89,7 @@ class SQLQueries {
         $stmt->execute();
     }
     
-    public function userExists($email) {
+    public static function userExists($email) {
         require 'connectToDb.php';
         try {
             $sql = "SELECT COUNT(email) FROM users"
@@ -92,7 +102,7 @@ class SQLQueries {
         return false;
     }
     
-    public function getUserByEmail($email) {
+    public static function getUserByEmail($email) {
          require 'connectToDb.php';
         try {
             $sql = "SELECT COUNT(email) FROM users"
@@ -104,7 +114,7 @@ class SQLQueries {
         }
     }
     
-    public function passwordMatches($email, $password) {
+    public static function passwordMatches($email, $password) {
         require 'connectToDb.php';
         try {
             $sql = "SELECT * FROM users"

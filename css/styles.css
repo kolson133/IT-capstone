@@ -16,6 +16,15 @@
 body {
     background-image: url(../images/IFoJQZ.jpg);
     background-size: cover;
+    color: white;
+}
+
+#resultsTable {
+    border-width: 1px;
+    border-color: white;
+    border-style: solid;
+    
+    margin: 0 auto;
 }
 
 .logo {
