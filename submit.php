@@ -56,14 +56,14 @@
             <div class="form-row">
                 <label>
                     <span>Full name</span>
-                    <input type="text" name="name">
+                    <input type="text" name="name" required>
                 </label>
             </div>
 
             <div class="form-row">
                 <label>
                     <span>Email</span>
-                    <input type="email" name="email">
+                    <input type="email" name="email" required>
                 </label>
             </div>
     
@@ -91,14 +91,14 @@
             <div class="form-row">
                 <label>
                     <span>Bar Name</span>
-                    <input type="text" name="bar" <?= $disabled ?> value="<?= $barName ?>">
+                    <input type="text" name="bar" <?= $disabled ?> value="<?= $barName ?>" required>
                 </label>
             </div>
     
             <div class="form-row">
                 <label>
                     <span>Happy Hour Day</span>
-                    <input list="dayOfWeek" name="dayOfWeek">
+                    <input list="dayOfWeek" name="dayOfWeek" required>
                       <datalist id="dayOfWeek">
                         <option value="Sunday">
                         <option value="Monday">
@@ -114,21 +114,21 @@
                 <div class="form-row">
                 <label>
                     <span>Start Time</span>
-                    <input type="text" name="startTime" value="08:00">
+                    <input type="text" name="startTime" value="08:00" required>
                 </label>
             </div>
     
                 <div class="form-row">
                 <label>
                     <span>End Time</span>
-                    <input type="text" name="endTime" value="20:00">
+                    <input type="text" name="endTime" value="20:00" required>
                 </label>
             </div>
 
             <div class="form-row">
                 <label>
                     <span>Details</span>
-                    <textarea name="details"></textarea>
+                    <textarea name="details" required></textarea>
                 </label>
             </div>
 

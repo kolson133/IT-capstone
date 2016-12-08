@@ -49,10 +49,11 @@
                     <?php
                      $happyHourResults = SQLQueries::getHappyHoursByBusinessID($row['id']);
                      while ($happyHourRow = $happyHourResults->fetch()) {
+                         echo "Happy Hour: $happyHourRow[description]<br>";
                          echo "Time Start: $happyHourRow[timeStart]<br>";
                          echo "Time End: $happyHourRow[timeEnd]<br>";
-                         echo "Happy Hour: $happyHourRow[description]<br>";
                          echo "Day: " . dayName($happyHourRow['dayOfTheWeek']);
+                         echo "<br><br>";
                      } //end happy hour row whle
                     ?>
                 </td>

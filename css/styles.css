@@ -13,12 +13,13 @@
     src: url(../fonts/DKMidnightChalker.otf);
 }
 
-tr {
+td {
         border-top-style: solid;
         border-top-width: 1px;
         border-top-color: white;
     }
     
+
 body {
     background-image: url(../images/IFoJQZ.jpg);
     background-size: cover;
@@ -31,6 +32,16 @@ body {
     border-style: solid;
     
     margin: 0 auto;
+}
+
+#resultsTable a,
+#resultsTable a:visited,
+#resultsTable a:link {
+    color: white;
+}
+
+.happyhours {
+    text-align: center;
 }
 
 .logo {
