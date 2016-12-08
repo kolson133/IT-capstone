@@ -130,6 +130,7 @@ body {
     display: inline-block;
     margin-top: 30px;
     margin-right: 275px;
+    margin-bottom: 15px;
   }
 
 }
@@ -140,7 +141,6 @@ footer{
     background-image: url(../images/4408530-old-brick-wall-background.jpg);
     left: -10px;
     width: 110%;
-    height: 13%;
 }
 
 .form-basic{
