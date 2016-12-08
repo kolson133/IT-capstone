@@ -15,6 +15,35 @@
         if(isset($_POST['submit'])) {
             //process form input
             echo "Thank you for your submission!";
+            $barID = $_POST['barID'];
+            $dayOfWeek = $_POST['dayOfWeek'];
+            $startTime = $_POST['startTime'];
+            $endTime = $_POST['endTime'];
+            $details = $_POST['details'];
+            
+            function dayOfWeek($day) {
+                switch($day) {
+                    case "Sunday":
+                        return 0;
+                    case "Monday":
+                        return 1;
+                    case "Tuesday":
+                        return 2;
+                    case "Wednesday":
+                        return 3;
+                    case "Thursday":
+                        return 4;
+                    case "Friday":
+                        return 5;
+                    case "Saturday":
+                        return 6;
+                    default:
+                        return 7;
+                }
+            }
+            $dayOfWeek = dayOfWeek($dayOfWeek);
+            include 'SQLQueries.php';
+            SQLQueries::addHappyHour($barID, $dayOfWeek, $startTime, $endTime, $details);
         } else {
         ?>
         
@@ -27,20 +56,21 @@
             <div class="form-row">
                 <label>
                     <span>Full name</span>
-                    <input type="text" name="name">
+                    <input type="text" name="name" required>
                 </label>
             </div>
 
             <div class="form-row">
                 <label>
                     <span>Email</span>
-                    <input type="email" name="email">
+                    <input type="email" name="email" required>
                 </label>
             </div>
     
             <?php
                 $disabled = "";
                 $barName = "";
+                $barID = "";
                 if(isset($_GET['barID'])) {
                     $barID = $_GET['barID'];
                     $disabled = " disabled";
@@ -61,15 +91,15 @@
             <div class="form-row">
                 <label>
                     <span>Bar Name</span>
-                    <input type="text" name="bar" <?= $disabled ?> value="<?= $barName ?>">
+                    <input type="text" name="bar" <?= $disabled ?> value="<?= $barName ?>" required>
                 </label>
             </div>
     
             <div class="form-row">
                 <label>
                     <span>Happy Hour Day</span>
-                    <input list="happyHour" name="happyHour">
-                      <datalist id="happyHour">
+                    <input list="dayOfWeek" name="dayOfWeek" required>
+                      <datalist id="dayOfWeek">
                         <option value="Sunday">
                         <option value="Monday">
                         <option value="Tuesday">
@@ -84,28 +114,28 @@
                 <div class="form-row">
                 <label>
                     <span>Start Time</span>
-                    <input type="text" name="startTime" value="08:00">
+                    <input type="text" name="startTime" value="08:00" required>
                 </label>
             </div>
     
                 <div class="form-row">
                 <label>
                     <span>End Time</span>
-                    <input type="text" name="endTime" value="20:00">
+                    <input type="text" name="endTime" value="20:00" required>
                 </label>
             </div>
 
             <div class="form-row">
                 <label>
                     <span>Details</span>
-                    <textarea name="details"></textarea>
+                    <textarea name="details" required></textarea>
                 </label>
             </div>
 
             <div class="form-row">
                 <button name="submit" type="submit">Submit Bar</button>
             </div>
-
+            <input type="hidden" name="barID" value="<?= $barID ?>">
 </form>
         
         <?php

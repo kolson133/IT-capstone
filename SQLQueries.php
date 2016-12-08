@@ -47,7 +47,7 @@ class SQLQueries {
     public static function getBarFromName($name) {
         return getBarFrom("name", $name);
     }
-    
+
     public static function getBarFromBarID($id) {
         require 'connectToDb.php';
         $sql = "SELECT * FROM business WHERE id='$id'";
@@ -66,7 +66,7 @@ class SQLQueries {
     public static function getHappyHoursForHappyHourID($id) {
         require 'connectToDb.php';
         $id = sanatizeInput($id);
-        $sql = "SELECT * FROM happyhour WHERE $id='$id'";
+        $sql = "SELECT * FROM happyhour WHERE id='$id'";
         try {
             return $pdo->query($sql);
         } catch (Exception $ex) {
@@ -76,12 +76,8 @@ class SQLQueries {
 
     public static function getHappyHoursByBusinessID($id) {
         require 'connectToDb.php';
-        $sql = "SELECT business.id, dayOfTheWeek, timeStart, timeEnd, happyhour.description "
-                . "FROM userSubmissions, happyhour, business "
-                . "WHERE userSubmissions.businessID = '$id'"
-                . " AND userSubmissions.businessID = business.id"
-                . " AND happyhour.id = userSubmissions.submissionID"
-                . " AND userSubmissions.submissionType = '1'";
+        $sql = "SELECT * FROM happyhour "
+                . "WHERE barID='$id'";
         try {
             return $pdo->query($sql);
         } catch (Exception $ex) {
@@ -95,6 +91,43 @@ class SQLQueries {
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', passwordHash($password));
         $stmt->execute();
+    }
+
+    public static function addHappyHour($businessID, $dayOfTheWeek, $startTime, $endTime, $description) {
+        require 'connectToDb.php';
+        if (SQLQueries::getHappyHourID($businessID, $dayOfTheWeek, $startTime, $endTime, $description) != -1) {
+            echo "Happy Hour already exists!";
+            return;
+        }
+        $stmt = $pdo->prepare("INSERT INTO happyhour (dayOfTheWeek, timeStart, timeEnd, description, barID) VALUES "
+                . "(:dayOfTheWeek, :timeStart, :timeEnd, :description, :barID)");
+        $stmt->bindParam(':dayOfTheWeek', $dayOfTheWeek);
+        $stmt->bindParam(':timeStart', $startTime);
+        $stmt->bindParam(':timeEnd', $endTime);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':barID', $businessID);
+        $stmt->execute();
+        $happyHourID = SQLQueries::getHappyHourID($businessID, $dayOfTheWeek, $startTime, $endTime, $description);
+        if($happyHourID == -1) {
+            echo "Error writing to database!";
+            return;
+        }
+    }
+
+    private static function getHappyHourID($businessId, $dayOfTheWeek, $startTime, $endTime, $description) {
+        require 'connectToDb.php';
+
+        $happyHoursResults = SQLQueries::getHappyHoursByBusinessID($businessId);
+        while ($happyHourRow = $happyHoursResults->fetch()) {
+            if ($happyHourRow['dayOfTheWeek'] == $dayOfTheWeek &&
+                    $happyHourRow['timeStart'] == $startTime &&
+                    $happyHourRow['timeEnd'] == $endTime &&
+                    $happyHourRow['description'] == $description) {
+                return $happyHourRow['id'];
+            }
+        }
+        // no happy hour found
+        return -1;
     }
 
     public static function passwordHash($password) {

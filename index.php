@@ -14,7 +14,7 @@
             <center>
                 <p>Enter Zip Code</p>
                 <form  method="get" action="results.php"  id="searchform"> 
-                <input  id="zip" type="text" name="zip"><br><br>
+                    <input id="zip" type="number" name="zip" required><br><br>
                 <input  type="submit" name="submit" value="Search"> 
                 </form>
             </center>   
