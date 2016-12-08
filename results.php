@@ -56,6 +56,9 @@
                      } //end happy hour row whle
                     ?>
                 </td>
+                <td class="barEditLinks">
+                    <a href="submit.php?barID=<?= $row['id']?>">Add Happy Hour!</a>
+                </td>
             </tr>
             
             <?php

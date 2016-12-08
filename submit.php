@@ -11,6 +11,13 @@
     <body>     
         <h1 class="logo">Don't Worry, Bar Happy!</h1>
         
+        <?php
+        if(isset($_POST['submit'])) {
+            //process form input
+            echo "Thank you for your submission!";
+        } else {
+        ?>
+        
 <form class="form-basic" method="post" action="#">
 
             <div class="form-title-row">
@@ -31,16 +38,36 @@
                 </label>
             </div>
     
+            <?php
+                $disabled = "";
+                $barName = "";
+                if(isset($_GET['barID'])) {
+                    $barID = $_GET['barID'];
+                    $disabled = " disabled";
+                    require 'connectToDb.php';
+                    include 'SQLQueries.php';
+                    try {
+                         $barResults = SQLQueries::getBarFromBarID($barID);
+                    $row = $barResults ->fetch();
+                    $barName = $row['name'];
+                    } catch (Exception $ex) {
+                        echo "error while getting bar name";
+                        echo $ex->getMessage();
+                    }
+                   
+                }
+             
+            ?>
             <div class="form-row">
                 <label>
                     <span>Bar Name</span>
-                    <input type="barName" name="bar">
+                    <input type="text" name="bar" <?= $disabled ?> value="<?= $barName ?>">
                 </label>
             </div>
     
             <div class="form-row">
                 <label>
-                    <span>Happy Hour Times</span>
+                    <span>Happy Hour Day</span>
                     <input list="happyHour" name="happyHour">
                       <datalist id="happyHour">
                         <option value="Sunday">
@@ -53,19 +80,38 @@
                       </datalist>
                 </label>
             </div>
-
-            <div class="form-row">
+    
+                <div class="form-row">
                 <label>
-                    <span>Details</span>
-                    <textarea name="textarea"></textarea>
+                    <span>Start Time</span>
+                    <input type="text" name="startTime" value="08:00">
+                </label>
+            </div>
+    
+                <div class="form-row">
+                <label>
+                    <span>End Time</span>
+                    <input type="text" name="endTime" value="20:00">
                 </label>
             </div>
 
             <div class="form-row">
-                <button type="submit">Submit Bar</button>
+                <label>
+                    <span>Details</span>
+                    <textarea name="details"></textarea>
+                </label>
             </div>
 
-</form><br><br><br><br><br><br><br><br>
+            <div class="form-row">
+                <button name="submit" type="submit">Submit Bar</button>
+            </div>
+
+</form>
+        
+        <?php
+        } //end if post submitted
+        ?>
+        <br><br><br><br><br><br><br><br>
         <footer>
             <div class="nav">
                 <ul>
