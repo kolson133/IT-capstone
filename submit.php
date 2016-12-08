@@ -145,7 +145,7 @@
         <footer>
             <div class="nav">
                 <ul>
-                    <li><a class="links" href="contact.php">Contact Us</a></li>
+                    <li><a class="links" href="contact.php">Contact</a></li>
                     <li><a class="links" href="index.php">Home</a></li>
                     <li><a class="links" href="submit.php">Submit</a></li>
                 </ul>

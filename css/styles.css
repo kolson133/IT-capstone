@@ -80,21 +80,47 @@ body {
     color: #D2691E;
 }
 
-.nav, ul, li, .links {
-    position: relative;
-    margin-top: 3px;
-    float: left;
+.nav ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.nav li {
+    line-height: 40px;
+    height: 40px;
+    border-bottom: 1px solid #888;
+}
+ 
+.nav a {
     text-decoration: none;
-    list-style-type: none;
     font-family: KGBrokenVesselsSketch;
-    font-size: 150%;
     color: floralwhite;
-    padding-left: 35px;
-    padding-right: 40px;
+    font-size: 300%;
+    text-shadow: 4px 4px black;
+    display: block;
 }
 
-.nav, .links:hover {
-    color: black;   
+.nav .links:hover {
+    color: black;
+    text-shadow: 4px 4px white;
+}
+ 
+@media screen and (min-width: 600px) {
+  .nav li {
+    width: 80px;
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+  }
+ 
+  .nav li {
+    display: inline-block;
+    margin-top: 30px;
+    margin-right: 275px;
+  }
+
 }
 
 footer{
