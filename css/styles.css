@@ -13,6 +13,12 @@
     src: url(../fonts/DKMidnightChalker.otf);
 }
 
+tr {
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-top-color: white;
+    }
+    
 body {
     background-image: url(../images/IFoJQZ.jpg);
     background-size: cover;
@@ -206,5 +212,6 @@ footer{
     .form-basic button{
         margin: 0;
     }
+    
 
 }

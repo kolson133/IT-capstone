@@ -15,6 +15,35 @@
         if(isset($_POST['submit'])) {
             //process form input
             echo "Thank you for your submission!";
+            $barID = $_POST['barID'];
+            $dayOfWeek = $_POST['dayOfWeek'];
+            $startTime = $_POST['startTime'];
+            $endTime = $_POST['endTime'];
+            $details = $_POST['details'];
+            
+            function dayOfWeek($day) {
+                switch($day) {
+                    case "Sunday":
+                        return 0;
+                    case "Monday":
+                        return 1;
+                    case "Tuesday":
+                        return 2;
+                    case "Wednesday":
+                        return 3;
+                    case "Thursday":
+                        return 4;
+                    case "Friday":
+                        return 5;
+                    case "Saturday":
+                        return 6;
+                    default:
+                        return 7;
+                }
+            }
+            $dayOfWeek = dayOfWeek($dayOfWeek);
+            include 'SQLQueries.php';
+            SQLQueries::addHappyHour($barID, $dayOfWeek, $startTime, $endTime, $details);
         } else {
         ?>
         
@@ -41,6 +70,7 @@
             <?php
                 $disabled = "";
                 $barName = "";
+                $barID = "";
                 if(isset($_GET['barID'])) {
                     $barID = $_GET['barID'];
                     $disabled = " disabled";
@@ -68,8 +98,8 @@
             <div class="form-row">
                 <label>
                     <span>Happy Hour Day</span>
-                    <input list="happyHour" name="happyHour">
-                      <datalist id="happyHour">
+                    <input list="dayOfWeek" name="dayOfWeek">
+                      <datalist id="dayOfWeek">
                         <option value="Sunday">
                         <option value="Monday">
                         <option value="Tuesday">
@@ -105,7 +135,7 @@
             <div class="form-row">
                 <button name="submit" type="submit">Submit Bar</button>
             </div>
-
+            <input type="hidden" name="barID" value="<?= $barID ?>">
 </form>
         
         <?php
