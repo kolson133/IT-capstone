@@ -15,7 +15,14 @@
         if(isset($_POST['submit'])) {
             //process form input
             echo "Thank you for your submission!";
+            
+            
+            
             $barID = $_POST['barID'];
+            if(!$barID) {
+                echo "Thank you for your submission!\n<br> Since this is a new bar, your submission has been emailed.";
+                return;
+            }
             $dayOfWeek = $_POST['dayOfWeek'];
             $startTime = $_POST['startTime'];
             $endTime = $_POST['endTime'];
@@ -50,7 +57,7 @@
 <form class="form-basic" method="post" action="#">
 
             <div class="form-title-row">
-                <h1 class="formH1">New Bar Form</h1>
+                <h1 class="formH1">New Happy Hour Form</h1>
             </div>
 
             <div class="form-row">
