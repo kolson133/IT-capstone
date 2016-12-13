@@ -30,7 +30,13 @@ class SQLQueries {
     }
 
     public static function getBarFromYelpID($yelpID) {
-        return getBarFrom("yelpID", $yelpID);
+           require 'connectToDb.php';
+        $sql = "SELECT * FROM business WHERE yelpID='$yelpID'";
+        try {
+            return $pdo->query($sql);
+        } catch (Exception $ex) {
+            print($ex->getMessage());
+        }
     }
 
     public static function getBarFromPhone($phone) {
@@ -85,6 +91,18 @@ class SQLQueries {
         }
     }
 
+    public static function getHappyHoursByYelpID($yelpID) {
+        require 'connectToDb.php';
+        $sql = "SELECT * FROM happyhour, business "
+                . "WHERE business.yelpID='$yelpID'"
+                . " AND business.id = happyhour.barID";
+        try {
+            return $pdo->query($sql);
+        } catch (Exception $ex) {
+            print($ex->getMessage());
+        }
+    }
+
     public static function addUser($email, $password) {
         require 'connectToDb.php';
         $stmt = $pdo->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
@@ -108,10 +126,29 @@ class SQLQueries {
         $stmt->bindParam(':barID', $businessID);
         $stmt->execute();
         $happyHourID = SQLQueries::getHappyHourID($businessID, $dayOfTheWeek, $startTime, $endTime, $description);
-        if($happyHourID == -1) {
+        if ($happyHourID == -1) {
             echo "Error writing to database!";
             return;
         }
+    }
+    
+        public static function addBar($yelpID, $name, $phone) {
+        require 'connectToDb.php';
+         if (SQLQueries::getBarFromYelpID($yelpID)->fetch()) {
+            //echo "Happy Hour already exists!";
+            return;
+        }
+        $stmt = $pdo->prepare("INSERT INTO business (yelpID, phone, name) VALUES "
+                . "(:yelpID, :phone, :name)");
+        $stmt->bindParam(':yelpID', $yelpID);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':name', $name);
+        try {
+             $stmt->execute();
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+       
     }
 
     private static function getHappyHourID($businessId, $dayOfTheWeek, $startTime, $endTime, $description) {

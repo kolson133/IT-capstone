@@ -16,13 +16,17 @@ and open the template in the editor.
         $response = query_api("54701");
         foreach ($response as $bar) {
             //var_dump($bar);
-            $id = $bar->id;
-            $phone = $bar->display_phone;
-            $name = $bar->name;
-            if($id && $phone && $name) {
-            echo "<br><br>";
-            echo "Bar $name with yelp_id: $id and phone: $phone";
-            echo "<br><br>";
+
+            if (isset($bar->display_phone)) {
+                $id = $bar->id;
+                $phone = $bar->display_phone;
+                $name = $bar->name;
+            }
+
+            if ($id && $phone && $name) {
+                echo "<br><br>";
+                echo "Bar $name with yelp_id: $id and phone: $phone";
+                echo "<br><br>";
             }
         }
         ?>
