@@ -14,14 +14,16 @@
         <?php
         if (isset($_POST['submit'])) {
             //process form input
-            echo "Thank you for your submission!";
+            
 
 
 
             $barID = $_POST['barID'];
             if (!$barID) {
-                echo "Thank you for your submission!\n<br> Since this is a new bar, your submission has been emailed.";
+                echo "<center>Thank you for your submission!\n<br> Since this is a new bar, your submission has been emailed.</center>";
                 return;
+            } else {
+                echo "<center>Thank you for your submission!</center>";
             }
             $dayOfWeek = $_POST['dayOfWeek'];
             $startTime = $_POST['startTime'];
