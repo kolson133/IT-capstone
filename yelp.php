@@ -121,16 +121,16 @@ function query_api($location) {
     $response = json_decode(search($location));
     $business_id = $response->businesses[0]->id;
     
-    print sprintf(
-        "%d businesses found, querying business info for the top result \"%s\"\n\n",         
-        count($response->businesses),
-        $business_id
-    );
+   // print sprintf(
+   //     "%d businesses found, querying business info for the top result \"%s\"\n\n",         
+   //     count($response->businesses),
+   //     $business_id
+   // );
+    return $response->businesses;
+    //$response = get_business($business_id);
     
-    $response = get_business($business_id);
-    
-    print sprintf("Result for business \"%s\" found:\n", $business_id);
-    print "$response\n";
+    //print sprintf("Result for business \"%s\" found:\n", $business_id);
+    //print "$response\n";
 }
 /**
  * User input is handled here 
