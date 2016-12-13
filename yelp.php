@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 /**
  * Yelp API v2.0 code sample.
@@ -22,28 +21,14 @@ require_once('lib/OAuth.php');
 // Set your OAuth credentials here  
 // These credentials can be obtained from the 'Manage API Access' page in the
 // developers documentation (http://www.yelp.com/developers)
-$CONSUMER_KEY = G9wSqAYtCMWwXVGPdHcaHw;
-$CONSUMER_SECRET = GHkmbFlmsdJ8hoWhvNNFDrknEKg;
-$TOKEN = v4Q0Q2Rbd_aJ643L-Y0MwTz1tnb66mst;
-$TOKEN_SECRET = E0ZXf_1WSROqEkK_iYjFFP_kNpM;
+$CONSUMER_KEY = "G9wSqAYtCMWwXVGPdHcaHw";
+$CONSUMER_SECRET = "GHkmbFlmsdJ8hoWhvNNFDrknEKg";
+$TOKEN = "v4Q0Q2Rbd_aJ643L-Y0MwTz1tnb66mst";
+$TOKEN_SECRET = "E0ZXf_1WSROqEkK_iYjFFP_kNpM";
 $API_HOST = 'api.yelp.com';
 $DEFAULT_TERM = 'bar';
-$DEFAULT_LOCATION = 'Eau Claire, WI';
-$SEARCH_LIMIT = 6;
-
-require_once('OAuth.php');
-// Set your OAuth credentials here  
-// These credentials can be obtained from the 'Manage API Access' page in the
-// developers documentation (http://www.yelp.com/developers)
-$CONSUMER_KEY = 'G9wSqAYtCMWwXVGPdHcaHw';
-$CONSUMER_SECRET = 'GHkmbFlmsdJ8hoWhvNNFDrknEKg';
-$TOKEN = 'v4Q0Q2Rbd_aJ643L-Y0MwTz1tnb66mst';
-$TOKEN_SECRET = 'E0ZXf_1WSROqEkK_iYjFFP_kNpM';
-$API_HOST = 'api.yelp.com';
-$DEFAULT_TERM = 'bar';
-$DEFAULT_LOCATION = 'Eau Claire, WI';
-$SEARCH_LIMIT = 7;
-
+//$DEFAULT_LOCATION = 'Eau Claire, WI';
+$SEARCH_LIMIT = 15;
 $SEARCH_PATH = '/v2/search/';
 $BUSINESS_PATH = '/v2/business/';
 /** 
@@ -81,6 +66,7 @@ function request($host, $path) {
             throw new Exception('Failed to initialize');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
         $data = curl_exec($ch);
         if (FALSE === $data)
             throw new Exception(curl_error($ch), curl_errno($ch));
@@ -104,11 +90,11 @@ function request($host, $path) {
  * @param    $location    The search location passed to the API 
  * @return   The JSON response from the request 
  */
-function search($term, $location) {
+function search($location) {
     $url_params = array();
     
-    $url_params['term'] = $term ?: $GLOBALS['DEFAULT_TERM'];
-    $url_params['location'] = $location?: $GLOBALS['DEFAULT_LOCATION'];
+    $url_params['term'] = $GLOBALS['DEFAULT_TERM'];
+    $url_params['location'] = $location;
     $url_params['limit'] = $GLOBALS['SEARCH_LIMIT'];
     $search_path = $GLOBALS['SEARCH_PATH'] . "?" . http_build_query($url_params);
     
@@ -131,9 +117,8 @@ function get_business($business_id) {
  * @param    $term        The search term to query
  * @param    $location    The location of the business to query
  */
-function query_api($term, $location) {     
-
-    $response = json_decode(search($term, $location));
+function query_api($location) {     
+    $response = json_decode(search($location));
     $business_id = $response->businesses[0]->id;
     
     print sprintf(
@@ -146,29 +131,6 @@ function query_api($term, $location) {
     
     print sprintf("Result for business \"%s\" found:\n", $business_id);
     print "$response\n";
-
-    
-    
-    for ($x = 0; $x < 7; $x++) {
-        $response = json_decode(search($term, $location));
-
-        $name = $response->businesses[$x]->name;
-        $telephone = $response->businesses[$x]->phone;
-        
-        $business_id = $response->businesses[$x]->id;
-        
-
-        // TODO: The below 4 lines are just for debugging. They along with the other comments can be removed before launch.
-        
-        echo "<pre>";
-        var_dump($response);
-        echo "</pre>";
-        echo "$name also known as  $business_id on Yelp can be reached at  $telephone";
-
-
-
-    }
-
 }
 /**
  * User input is handled here 
@@ -178,9 +140,8 @@ $longopts  = array(
     "location::",
 );
     
-$options = getopt("", $longopts);
-$term = $options['term'] ?: '';
+//$options = getopt("", $longopts);
+//$term = $options['term'] ?: '';
 //$location = $options['location'] ?: '';
-$location = $options['location'] ?: $_GET['zip'];
-query_api($term, $location);
+//query_api($term, $location);
 ?>
