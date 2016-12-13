@@ -30,6 +30,20 @@ $API_HOST = 'api.yelp.com';
 $DEFAULT_TERM = 'bar';
 $DEFAULT_LOCATION = 'Eau Claire, WI';
 $SEARCH_LIMIT = 6;
+
+require_once('OAuth.php');
+// Set your OAuth credentials here  
+// These credentials can be obtained from the 'Manage API Access' page in the
+// developers documentation (http://www.yelp.com/developers)
+$CONSUMER_KEY = 'G9wSqAYtCMWwXVGPdHcaHw';
+$CONSUMER_SECRET = 'GHkmbFlmsdJ8hoWhvNNFDrknEKg';
+$TOKEN = 'v4Q0Q2Rbd_aJ643L-Y0MwTz1tnb66mst';
+$TOKEN_SECRET = 'E0ZXf_1WSROqEkK_iYjFFP_kNpM';
+$API_HOST = 'api.yelp.com';
+$DEFAULT_TERM = 'bar';
+$DEFAULT_LOCATION = 'Eau Claire, WI';
+$SEARCH_LIMIT = 7;
+
 $SEARCH_PATH = '/v2/search/';
 $BUSINESS_PATH = '/v2/business/';
 /** 
@@ -118,6 +132,7 @@ function get_business($business_id) {
  * @param    $location    The location of the business to query
  */
 function query_api($term, $location) {     
+
     $response = json_decode(search($term, $location));
     $business_id = $response->businesses[0]->id;
     
@@ -131,6 +146,29 @@ function query_api($term, $location) {
     
     print sprintf("Result for business \"%s\" found:\n", $business_id);
     print "$response\n";
+
+    
+    
+    for ($x = 0; $x < 7; $x++) {
+        $response = json_decode(search($term, $location));
+
+        $name = $response->businesses[$x]->name;
+        $telephone = $response->businesses[$x]->phone;
+        
+        $business_id = $response->businesses[$x]->id;
+        
+
+        // TODO: The below 4 lines are just for debugging. They along with the other comments can be removed before launch.
+        
+        echo "<pre>";
+        var_dump($response);
+        echo "</pre>";
+        echo "$name also known as  $business_id on Yelp can be reached at  $telephone";
+
+
+
+    }
+
 }
 /**
  * User input is handled here 
@@ -142,6 +180,7 @@ $longopts  = array(
     
 $options = getopt("", $longopts);
 $term = $options['term'] ?: '';
-$location = $options['location'] ?: '';
+//$location = $options['location'] ?: '';
+$location = $options['location'] ?: $_GET['zip'];
 query_api($term, $location);
 ?>

@@ -12,7 +12,7 @@
         <h1 class="logo">Don't Worry, Bar Happy!</h1>
         <div class="contactInfo">
              <p>
-                 We wanted to create a new way to look for bars in your area! We wanted out webstie to be your 
+                 We wanted to create a new way to look for bars in your area! We wanted our website to be your 
                  go to place to find all of the information you needed. This site was created for our IT-Capstone class 
                  but that didn't mean we couldn't do our very best to create something that we wanted to show the world. 
                  The three of us wanted you to enjoy our site and feel free to tell us about any fun idea you had. This 
@@ -24,9 +24,9 @@
         </div>
 
         <footer>
-            <div class="nav"></div>
+            <div class="nav">
                 <ul>
-                    <li><a class="links" href="contact.php">Contact Us</a></li>
+                    <li><a class="links" href="contact.php">Contact</a></li>
                     <li><a class="links" href="index.php">Home</a></li>
                     <li><a class="links" href="submit.php">Submit</a></li>
                 </ul>
