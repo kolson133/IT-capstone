@@ -15,7 +15,7 @@
         if (isset($_POST['submit'])) {
             //process form input
             
-
+            
 
 
             $barID = $_POST['barID'];
@@ -24,6 +24,9 @@
                 return;
             } else {
                 echo "<center>Thank you for your submission!</center>";
+            }
+            if(!isset($_POST['dayOfWeek']) || !isset($_POST['startTime']) || !isset($_POST['endTime']) || !isset($_POST['details'])) {
+                die("Please enter all fields!");
             }
             $dayOfWeek = $_POST['dayOfWeek'];
             $startTime = $_POST['startTime'];
@@ -52,8 +55,24 @@
             }
 
             $dayOfWeek = dayOfWeek($dayOfWeek);
+            if($dayOfWeek == 7) {
+                die("Please enter in a valid day of the week!");
+            }
+            if(!is_numeric($barID)) {
+                die("Error, invalid form data entered for bar id.");
+            }
+            function verifyValidTime($time) {
+                return preg_match("/[0-9]{1,2}:[0-9]{2}/", $time);
+            }
+            if(!verifyValidTime($startTime) || !verifyValidTime($endTime)) {
+                die("Please enter a valid start and end time.");
+            }
+            if($details == "") {
+                die("Please enter valid details!");
+            }
             include 'SQLQueries.php';
             SQLQueries::addHappyHour($barID, $dayOfWeek, $startTime, $endTime, $details);
+            
         } else {
             ?>
 

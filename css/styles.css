@@ -34,6 +34,10 @@ body {
     margin: 0 auto;
 }
 
+.resultsBox {
+    margin-bottom: 400px;
+}
+
 #resultsTable a,
 #resultsTable a:visited,
 #resultsTable a:link {
