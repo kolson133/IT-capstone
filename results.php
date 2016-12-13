@@ -54,7 +54,7 @@
                 }
                 ?>
             <tr>
-                <td class="barName"><?= $name . " " . $yelpID ?></td>
+                <td class="barName"><?= $name ?></td>
                 <td class="barPhone"><?= $phone ?></td>
                 <td class="happyhours">
                     <?php

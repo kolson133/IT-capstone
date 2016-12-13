@@ -98,10 +98,14 @@
                                 echo "error while getting bar name";
                                 echo $ex->getMessage();
                             }
+                            $barResults = SQLQueries::getBarFromYelpID($yelpID);
+                        } else {
+                            $barResults = SQLQueries::getBarFromBarID($barID);
                         }
-                        $barResults = SQLQueries::getBarFromBarID($barID);
                         $row = $barResults->fetch();
-
+                        if($barID == -1) {
+                            $barID = $row['id'];
+                        }
                         $barName = $name;
                     } catch (Exception $ex) {
                         echo "error while getting bar name";
