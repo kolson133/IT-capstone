@@ -41,6 +41,9 @@
                 $zip = $_GET['zip'];
                 include 'SQLQueries.php';
                 include './yelp.php';
+                if(!is_numeric($zip) || !preg_match("/^[0-9]{5}$/", $zip)) {
+                    die("Please enter a valid zip code");
+                }
                 $searchResults = query_api($zip);
                 echo '<table id="resultsTable">';
                 foreach ($searchResults as $bar) {

@@ -62,7 +62,7 @@
                 die("Error, invalid form data entered for bar id.");
             }
             function verifyValidTime($time) {
-                return preg_match("/[0-9]{1,2}:[0-9]{2}/", $time);
+                return preg_match("/^[0-9]{1,2}:[0-9]{2}$/", $time);
             }
             if(!verifyValidTime($startTime) || !verifyValidTime($endTime)) {
                 die("Please enter a valid start and end time.");
