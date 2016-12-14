@@ -46,6 +46,14 @@
                 }
                 $searchResults = query_api($zip);
                 echo '<table id="resultsTable">';
+                ?>
+            <tr>
+                <th>Name of Bar</th>
+                <th>Phone</th>
+                <th>Happy Hours</th>
+              
+            </tr>
+            <?php
                 foreach ($searchResults as $bar) {
                     // We are only showing bars with phone numbers
                     if (isset($bar->display_phone)) {
@@ -56,6 +64,7 @@
                         continue;
                     }
                     ?>
+                    
                     <tr>
                         <td class="barName"><?= $name ?></td>
                         <td class="barPhone"><?= $phone ?></td>
