@@ -14,8 +14,7 @@ try {
     
 } catch (Exception $ex) {
     $errorMsg = "Unable to connect to the database Server: ". $ex ->getMessage();
-    
-    include 'error.html.php';
+    echo "$errorMsg";
     exit();
 }
 
