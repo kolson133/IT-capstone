@@ -18,7 +18,12 @@ td {
         border-top-width: 1px;
         border-top-color: white;
     }
-    
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 body {
     background-image: url(../images/IFoJQZ.jpg);
@@ -55,6 +60,7 @@ body {
     font-family: ChalkboardbyMartavanEck;
     color: floralwhite;
     font-size: 120px;
+    padding-bottom: 50px;
 }
 
 .searchBox {
