@@ -17,7 +17,7 @@
  * `php sample.php --term="bars" --location="San Francisco, CA"`
  */
 // Enter the path that the oauth library is in relation to the php file
-require_once('lib/OAuth.php');
+require_once('./lib/OAuth.php');
 // Set your OAuth credentials here  
 // These credentials can be obtained from the 'Manage API Access' page in the
 // developers documentation (http://www.yelp.com/developers)
@@ -75,6 +75,7 @@ function request($host, $path) {
             throw new Exception($data, $http_status);
         curl_close($ch);
     } catch(Exception $e) {
+        echo "".$e->getMessage();
         trigger_error(sprintf(
             'Curl failed with error #%d: %s',
             $e->getCode(), $e->getMessage()),
