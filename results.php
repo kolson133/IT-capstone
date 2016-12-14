@@ -77,10 +77,11 @@
                             }
                             $happyHourResults = SQLQueries::getHappyHoursByYelpID($yelpID);
                             while ($happyHourRow = $happyHourResults->fetch()) {
-                                echo "Happy Hour: $happyHourRow[description]<br>";
-                                echo "Time Start: $happyHourRow[timeStart]<br>";
-                                echo "Time End: $happyHourRow[timeEnd]<br>";
-                                echo "Day: " . dayName($happyHourRow['dayOfTheWeek']);
+                                echo "<b>Happy Hour</b>: $happyHourRow[description]<br>";
+                                echo "<b>Day</b>: " . dayName($happyHourRow['dayOfTheWeek']);
+                                echo "<br><b>Time Start</b>: $happyHourRow[timeStart]<br>";
+                                echo "<b>Time End</b>: $happyHourRow[timeEnd]";
+                                
 
                                 $barID = $happyHourRow['barID'];
                                 echo "<br><br>";
