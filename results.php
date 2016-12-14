@@ -93,6 +93,7 @@
                                 <input type="hidden" name="barName" value="<?= $name ?>">
                                 <input type="hidden" name="barPhone" value="<?= $phone ?>">
                                 <input type="hidden" name="barYelpID" value="<?= $yelpID ?>">
+                                <input type="hidden" name="zip" value="<?= $zip ?>">
                                 <input type="submit" value="Add Happy Hour!">
                             </form>
 
