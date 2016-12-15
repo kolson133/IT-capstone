@@ -28,7 +28,7 @@ $TOKEN_SECRET = "E0ZXf_1WSROqEkK_iYjFFP_kNpM";
 $API_HOST = 'api.yelp.com';
 $DEFAULT_TERM = 'bar';
 //$DEFAULT_LOCATION = 'Eau Claire, WI';
-$SEARCH_LIMIT = 15;
+$SEARCH_LIMIT = 30;
 $SEARCH_PATH = '/v2/search/';
 $BUSINESS_PATH = '/v2/business/';
 /** 

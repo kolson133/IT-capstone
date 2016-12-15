@@ -7,18 +7,32 @@
         <meta name="BarHappy" content="contactUs">
         <link rel="stylesheet" href="css/styles.css">
     </head>
-    
+
     <body>     
         <h1 class="logo">Don't Worry, Bar Happy!</h1>
         <div class="contactInfo">
-             <p>
-                 We wanted to create a new way to look for bars in your area! We wanted our website to be your 
-                 go to place to find all of the information you needed. This site was created for our IT-Capstone class 
-                 but that didn't mean we couldn't do our very best to create something that we wanted to show the world. 
-                 The three of us wanted you to enjoy our site and feel free to tell us about any fun idea you had. This 
-                 project was not our first and will not be our last. Over the years we all plan to grow and become better 
-                 at the things we love. This is only a small taste of what is to come from all of us. So please feel free
-                 to contact us and tell us anything on your mind! Thank you for choosing us for your bar needs!
+            <p>
+                We discovered many local bars use Facebook as their sole online presence since they do not have a website. This made it difficult to find happy hour specials and their times.
+
+
+
+
+
+
+                With our site we’ve brought all that information together and uniformly. We achieved this by collecting information on top rated bars through Yelp’s API and then researching when their individual happy hour’s are and what they include.
+
+
+
+
+
+
+                Now our users can search and find bars that will save them money on the drinks they enjoy.
+
+
+
+
+                Contact us below for questions or advertising opportunities.
+
             </p><br><br>
             <center><a class="contactEmail" href="mailto:achilles2865@gmail.com">Click Here to Email Us!</a></center>
         </div>
